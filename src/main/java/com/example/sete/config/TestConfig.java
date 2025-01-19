@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.example.sete.entities.Category;
 import com.example.sete.entities.Order;
 import com.example.sete.entities.OrderItem;
+import com.example.sete.entities.Payment;
 import com.example.sete.entities.Product;
 import com.example.sete.entities.User;
 import com.example.sete.entities.enums.OrderStatus;
@@ -19,6 +20,10 @@ import com.example.sete.repositories.OrderItemRepository;
 import com.example.sete.repositories.OrderRepository;
 import com.example.sete.repositories.ProductRepository;
 import com.example.sete.repositories.UserRepository;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Configuration
 @Profile("test")
@@ -80,6 +85,11 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 	}
 	
 }
