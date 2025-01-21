@@ -54,8 +54,8 @@ public class OrderItem implements Serializable{
 		return quantity;
 	}
 
-	public void setQunatity(Integer qunatity) {
-		this.quantity = qunatity;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	public Double getPrice() {
